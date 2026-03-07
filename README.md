@@ -1,42 +1,71 @@
-# sv
+<div align="center">
+  <h1>🟩 Clear The Lines 🟪</h1>
+  <p><strong>A modern, web-based Tetris game built with SvelteKit and PixiJS.</strong></p>
+  
+  [![SvelteKit](https://img.shields.io/badge/sveltekit-%23FF3E00.svg?style=for-the-badge&logo=svelte&logoColor=white)](https://kit.svelte.dev/)
+  [![PixiJS](https://img.shields.io/badge/PixiJS-FF0041?style=for-the-badge&logo=Webgl&logoColor=white)](https://pixijs.com/)
+  [![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+</div>
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+<br />
 
-## Creating a project
+## 🎮 Play the Game
+*(Add your GitHub Pages URL here once deployed)*
+[Play **Clear The Lines** Here]()
 
-If you're seeing this, you've probably already done this step. Congrats!
+## 🚀 Overview
+**Clear The Lines** is a classic Tetris clone with a modern tech stack. It leverages the raw WebGL rendering power of **PixiJS** for the game board and the reactive, component-driven UI of **SvelteKit** for the HUD and menus.
 
-```sh
-# create a new project
-npx sv create my-app
-```
+The goal of this project is not just to build another Tetris game, but to provide a clean, typed, and well-structured implementation using TypeScript, demonstrating how to bridge a low-level graphics engine (PixiJS) with a modern web framework (SvelteKit).
 
-To recreate this project with the same configuration:
+## ✨ Features
+*   **Classic Gameplay**: Familiar I, J, L, O, S, T, Z pieces, standard rotation logic, and scoring.
+*   **Ghost Piece**: A helpful projection showing where your block will land.
+*   **Next Piece Preview**: Look ahead to plan your upcoming moves.
+*   **Level Progression**: Speed increases as you clear more lines.
+*   **Sleek UI**: Minimalist, dark-themed retro HUD built with Svelte.
 
-```sh
-# recreate this project
-npx sv@0.12.4 create --template minimal --types ts --install npm tetris-pixijs
-```
+## ⌨️ Controls
+| Key | Action |
+| :--- | :--- |
+| `Left Arrow` | Move Left |
+| `Right Arrow` | Move Right |
+| `Down Arrow` | Soft Drop |
+| `Up Arrow` | Rotate |
+| `Spacebar` | Hard Drop |
+| `P` | Pause / Resume |
 
-## Developing
+## 🛠️ Technology Stack
+*   **Framework**: [SvelteKit](https://kit.svelte.dev/)
+*   **Rendering**: [PixiJS (v8)](https://pixijs.com/)
+*   **Language**: [TypeScript](https://www.typescriptlang.org/)
+*   **Styling**: Vanilla CSS
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## 📦 Local Development
 
-```sh
-npm run dev
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/clear-the-lines.git
+   cd clear-the-lines
+   ```
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-## Building
+3. **Start the development server**
+   ```bash
+   npm run dev
+   ```
 
-To create a production version of your app:
+4. **Play!**
+   Open your browser and navigate to `http://localhost:5173`.
 
-```sh
-npm run build
-```
+## 🏗️ Architecture
+The project is strictly divided into two layers:
+1.  **Game Engine (`src/lib/game/`)**: The core game logic (`Game.ts`, `Board.ts`, `Tetromino.ts`) and the visual representation (`Renderer.ts`). This layer is completely independent of the UI framework.
+2.  **User Interface (`src/routes/`, `src/lib/components/`)**: The SvelteKit layer that handles the DOM, binds keyboard events, and reactively displays the score and state from the Game Engine.
 
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+## 📝 License
+This project is open-source and available under the [MIT License](LICENSE).
