@@ -52,11 +52,11 @@
     if (!game || isGameOver) return;
     
     // 기본 브라우저 스크롤 동작 방지 (방향키, 스페이스)
-    if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(e.key)) {
+    if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space'].includes(e.code)) {
       e.preventDefault();
     }
 
-    switch (e.key) {
+    switch (e.code) {
       case 'ArrowLeft':
         game.moveLeft();
         break;
@@ -69,11 +69,10 @@
       case 'ArrowUp':
         game.rotate();
         break;
-      case ' ': // 스페이스바
+      case 'Space': // 스페이스바
         game.hardDrop();
         break;
-      case 'p':
-      case 'P':
+      case 'KeyP': // 한/영 키 상태에 상관없이 P 키보드 위치의 키를 눌렀을 때
         game.togglePause();
         break;
     }
