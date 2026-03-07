@@ -1,0 +1,36 @@
+:root {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --hud-bg: rgba(255, 255, 255, 0.05);
+  --accent-color: #4CAF50;
+  --game-border: #333333;
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+  user-select: none;
+}
+
+#app-container {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.canvas-container {
+  border: 4px solid var(--game-border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  background-color: #000;
+}
