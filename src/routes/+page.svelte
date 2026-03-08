@@ -12,7 +12,7 @@
   let score = $state(0);
   let level = $state(1);
   let lines = $state(0);
-  let nextTetromino = $state(null);
+  let nextTetrominoes = $state([]);
   let isGameOver = $state(false);
   let isPaused = $state(false);
 
@@ -31,7 +31,7 @@
       score = game.score;
       level = game.level;
       lines = game.lines;
-      nextTetromino = game.nextTetromino as any; // 타입 단언
+      nextTetrominoes = [...game.nextTetrominoes]; // 복사본 생성하여 Svelte 반응성 트리거
       isGameOver = game.isGameOver;
       isPaused = game.isPaused;
     }, 1000 / 30);
@@ -111,7 +111,7 @@
     </div>
 
     <!-- Svelte UI 컴포넌트 -->
-    <HUD {score} {level} {lines} {nextTetromino} />
+    <HUD {score} {level} {lines} {nextTetrominoes} />
   </div>
 </div>
 

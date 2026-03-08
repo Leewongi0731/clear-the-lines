@@ -6,12 +6,12 @@
     score = 0, 
     level = 1, 
     lines = 0, 
-    nextTetromino = null 
+    nextTetrominoes = [] 
   }: { 
     score: number; 
     level: number; 
     lines: number; 
-    nextTetromino: Tetromino | null 
+    nextTetrominoes: Tetromino[] 
   } = $props();
 
   // 다음 블록을 4x4 미니 그리드로 렌더링하기 위한 헬퍼 변수
@@ -36,25 +36,27 @@
 
   <div class="stat-box next-piece-box">
     <h3>NEXT</h3>
-    <div class="mini-board">
-      {#if nextTetromino}
-        <!-- 4x4 격자를 렌더링 -->
-        {#each [0, 1, 2, 3] as row}
-          <div class="mini-row">
-            {#each [0, 1, 2, 3] as col}
-              {#if nextTetromino.shape[row] && nextTetromino.shape[row][col]}
-                <!-- 색상 코드(0xFF0000 등)를 CSS HEX 문자열(#FF0000)로 변환 -->
-                <div 
-                  class="mini-cell filled" 
-                  style="background-color: #{nextTetromino.color.toString(16).padStart(6, '0')}"
-                ></div>
-              {:else}
-                <div class="mini-cell empty"></div>
-              {/if}
-            {/each}
-          </div>
-        {/each}
-      {/if}
+    <div class="next-pieces-container">
+      {#each nextTetrominoes as tetromino}
+        <div class="mini-board">
+          <!-- 4x4 격자를 렌더링 -->
+          {#each [0, 1, 2, 3] as row}
+            <div class="mini-row">
+              {#each [0, 1, 2, 3] as col}
+                {#if tetromino.shape[row] && tetromino.shape[row][col]}
+                  <!-- 색상 코드(0xFF0000 등)를 CSS HEX 문자열(#FF0000)로 변환 -->
+                  <div 
+                    class="mini-cell filled" 
+                    style="background-color: #{tetromino.color.toString(16).padStart(6, '0')}"
+                  ></div>
+                {:else}
+                  <div class="mini-cell empty"></div>
+                {/if}
+              {/each}
+            </div>
+          {/each}
+        </div>
+      {/each}
     </div>
   </div>
   
@@ -106,11 +108,17 @@
     border-top: 2px solid #444;
   }
 
+  .next-pieces-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
   .mini-board {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 1rem;
     gap: 2px;
   }
 

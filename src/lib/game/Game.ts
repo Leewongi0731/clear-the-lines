@@ -4,7 +4,7 @@ import { Tetromino, type TetrominoType } from './Tetromino';
 export class Game {
     public board: Board;
     public currentTetromino: Tetromino | null = null;
-    public nextTetromino: Tetromino | null = null;
+    public nextTetrominoes: Tetromino[] = [];
 
     public score: number = 0;
     public level: number = 1;
@@ -35,12 +35,14 @@ export class Game {
      * 랜덤한 타입의 블록을 새로 생성하고 현재/다음 블록을 교체합니다.
      */
     private spawnTetromino(): void {
-        if (!this.nextTetromino) {
-            this.nextTetromino = this.createRandomTetromino();
+        if (this.nextTetrominoes.length === 0) {
+            for (let i = 0; i < 3; i++) {
+                this.nextTetrominoes.push(this.createRandomTetromino());
+            }
         }
 
-        this.currentTetromino = this.nextTetromino;
-        this.nextTetromino = this.createRandomTetromino();
+        this.currentTetromino = this.nextTetrominoes.shift()!;
+        this.nextTetrominoes.push(this.createRandomTetromino());
 
         // 초기 위치 보정: 보드 정중앙 맨 위에서 시작하도록
         this.currentTetromino.x = Math.floor(BOARD_WIDTH / 2) - Math.floor(this.currentTetromino.shape[0].length / 2);
