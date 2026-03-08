@@ -129,7 +129,7 @@ export class Game {
     public moveDown(): void {
         if (this.isGameOver || this.isPaused || !this.currentTetromino) return;
         if (this.board.isValidMove(this.currentTetromino.shape, this.currentTetromino.x, this.currentTetromino.y + 1)) {
-            this.currentTetromino.x += 1;
+            this.currentTetromino.y += 1;
             this.score += 1; // Soft drop 점수 (보너스)
         } else {
             this.lockCurrentTetromino();
